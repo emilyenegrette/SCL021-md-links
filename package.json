@@ -1,7 +1,36 @@
 {
-  "name": "md-links",
-  "version": "0.1.0",
+  "name": "emilyenegrette-mdlinks",
+  "version": "1.0.8",
+  "description": "Markdown Links",
+  "main": "./index.js",
+  "bin": {
+    "mdLinks": "./app.js"
+  },
+  "author": {
+    "name": "Emily Negrette",
+    "email": "emilyenegrette@gmail.com",
+    "url": "https://www.linkedin.com/in/emilynegrette/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emilyenegrette/SCL021-md-links"
+  },
   "engines": {
-    "node": ">=16.x"
+    "node": ">=14.x"
+  },
+  "scripts": {
+    "test": "jest --coverage --verbose",
+    "dev": "node ./app.js"
+  },
+  "dependencies": {
+    "colors": "^1.4.0",
+    "gradient-string": "^2.0.0",
+    "node-fetch": "^2.6.7"
+  },
+  "devDependencies": {
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "jest": "^27.5.1"
   }
 }
