@@ -67,7 +67,7 @@ const extractionLinks = pathAbsolute => {
 const dataLinks = links => {
   const objects = links.map(e=> {
     return fetch(e)
-    .then((response) => {
+    .then((res) => {
       return {
         file: e.file,
         href: e.href,
