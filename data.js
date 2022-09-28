@@ -2,8 +2,15 @@
 const path = require('path');
 const fs = require('fs');
 const fetch = require('node-fetch');
-const { realpath } = require('fs/promises');
-const color = requiere('colors');
+const colors = require('colors');
+colors.setTheme({
+    info: ['green', 'bold', 'underline'],
+    data: ['grey', 'bold', 'underline'],
+    help: ['cyan', 'bold'],
+    warn: ['yellow', 'bold'],
+    debug: ['blue','bold'],
+    error: ['red', 'bold', 'underline'],
+});
 
 // Analizar si existe una ruta
 // recordar que route es routeEx
@@ -43,7 +50,7 @@ const extractionLinks = pathAbsolute => {
     // extraccion de links con expresiones regulares
     if(regExp.test(dataFiles)) {
       let arrLinks = dataFiles.match(regExp);
-      console.log(`En los archivos ${file} existen ${arrLinks.lenght} links por analizar.`);
+      console.log(`En los archivos ${file} existen ${arrLinks.lenght} links por analizar.`.help);
       arrLinks.forEach(arrayLinks => {
         allLinks.push({
           'file': file,
@@ -51,10 +58,26 @@ const extractionLinks = pathAbsolute => {
         })
       })
     } else {
-      console.log(`En los archivos ${file} no existen links para analizar.`);
+      console.log(` En los archivos ${file} no existen links para analizar.`.error);
     }
   });
 };
+
+// extraer data de los links
+const dataLinks = links => {
+  const objects = links.map(e=> {
+    return fetch(e)
+    .then((response) => {
+      return {
+        file: e.file,
+        href: e.href,
+        status: error.status === undefined ? 'No existe ningun status': error.status,
+        ok: 'fail',
+      }
+    })
+  });
+  return Promise.all(objects)
+}
 
 module.exports = {
   route,
@@ -64,5 +87,6 @@ module.exports = {
   regExp, 
   extractionMDFiles,
   extractionLinks,
+  dataLinks
 };
 
