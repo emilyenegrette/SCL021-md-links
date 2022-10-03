@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const {route, viewFolder, fileMDExtension, readFolder, regExp, extractionMDFiles, extractionLinks, dataLinks} = require ('./data');
 const colors = require('colors');
 colors.setTheme({
@@ -8,3 +10,5 @@ colors.setTheme({
     debug: ['blue','bold'],
     error: ['red', 'bold', 'underline'],
 });
+
+console.log('hola');

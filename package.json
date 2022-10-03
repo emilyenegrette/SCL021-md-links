@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "\"Markdown Links Project for Laboratoria SCL021 - © All rights reserved 2022 - Emily Negrette\"",
   "main": "index.js",
+  "bin": {
+    "mdlinks": "index.js"
+   },
   "directories": {
     "test": "test"
   },

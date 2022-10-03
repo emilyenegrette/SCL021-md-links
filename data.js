@@ -1,10 +1,12 @@
+#!/usr/bin/env node
 // ELEMENTOS QUE NECESITO PARA COMENZAR
+
 const path = require('path');
 const fs = require('fs');
 const fetch = require('node-fetch');
 const colors = require('colors');
 colors.setTheme({
-    info: ['green', 'bold', 'underline'],
+    ok: ['green', 'bold', 'underline'],
     data: ['grey', 'bold', 'underline'],
     help: ['cyan', 'bold'],
     warn: ['yellow', 'bold'],
