@@ -5,7 +5,7 @@
   "main": "index.js",
   "bin": {
     "mdlinks": "index.js"
-   },
+  },
   "directories": {
     "test": "test"
   },
