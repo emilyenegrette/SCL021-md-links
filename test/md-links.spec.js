@@ -1,8 +1,8 @@
-// FUNCIONES A TESTEAR
+// Funciones para testeo
 const { mdLinks } = require('../index');
 const { routeEx, isFolder, fileExtensionMD, extractionFilesMD, extractionLinks, dataLinks } = require('../data');
 
-// DATA A UTILIZAR
+// Data
 const pathErronea = './package.jon';
 const pathDiferent = './package.json';
 const pathRelative = './';
