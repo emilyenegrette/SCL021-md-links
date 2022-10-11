@@ -1,58 +1,50 @@
 #!/usr/bin/env node
-
-const { route, viewFolder, fileMDExtension, extractionMDFiles, extractionLinks, dataLinks} = require ('./data');
-const colors = require('colors');
-colors.setTheme({
-    ok: ['green', 'bold', 'underline'],
-    data: ['grey', 'bold', 'underline'],
-    help: ['cyan', 'bold'],
-    warn: ['yellow', 'bold'],
-    debug: ['blue','bold'],
-    error: ['red', 'bold', 'underline'],
-});
+const { routeEx, isFolder, extractionFilesMD, fileExtensionMD, extractionLinks, dataLinks } = require('./data');
+const color = require('colors');
 
 const mdLinks = (inputPath, options) => {
-    return new Promise(function (res, rej){
-        if (!route(inputPath)) {
-            rej('La ruta ingresada es invalida.');
-        }
-// filtrado a ver si es directorio relativo o archivo absoluto.
-
-let filesAbsolute;
-// si es directorio entonces...
-    if (viewFolder(inputPath)){
-        console.log(`La ruta es un directorio`.help);   
-}
-// vamos a analizar si es directorio
-filesAbsolute = extractionMDFiles(inputPath);
-// si es archivo.md
-    if(fileMDExtension(inputPath)){
-        console.log(`Tu ruta es un archivo.md`.help);
-        filesAbsolute = [inputPath];
+  return new Promise(function (res, rej) {
+    if (!routeEx(inputPath)) {
+      rej('La ruta ingresada no es válida.')
     }
-    // si la ruta NO es un archivo.md
+    // Filtramos por directorio relativo o archivo absoluto
+    let filesAbsolute;
+    //si ruta es directorio
+    if (isFolder(inputPath)) {
+      console.log(color.bold('Tu ruta es un directorio.'));
+      //Función para analizar directorio
+      filesAbsolute = extractionFilesMD(inputPath);
+    }
     else {
-        rej(`La ruta ${inputPath} no es un Markdown Link`);        
-    }
-});
-};
-
-// vamos a extraer los links pero sin validacion de ruta
-const links = extractionLinks(filesAbsolute);
-
-// vamos a extraer la data para valdar los links
-const dataLinksValidate = dataLinks(links);
-    if (options === undefined){
-        res(links)
-    }
-    else if (options === '--validate') {
-        res (dataLinksValidate);
-    }
-    else if (options === '--stats') {
-        res(`Existen ${links.length} links en total.`);
+      // Si la ruta es archivo .md
+      if (fileExtensionMD(inputPath)) {
+        console.log(color.bold('Tu ruta es un archivo.md'));
+        filesAbsolute = [inputPath];
+      }
+      //Si la ruta NO es archivo .md
+      else {
+        rej(`La ruta ${inputPath} no corresponde a un archivo Markdown.`);
+      }
     };
 
-// exportado
+    // Utilizo la función para extraer links pero sin validar según la ruta absoluta (archivos.md)
+    const links = extractionLinks(filesAbsolute);
+
+    // Utilizo la función para extraer data de validación de todos los links
+    const dataAllLinksValidate = dataLinks(links);
+
+    if (options === undefined) {
+      res(links)
+    }
+    else if (options === '--validate') {
+      res(dataAllLinksValidate);
+    }
+    else if (options === '--stats'){
+      res(`Existen ${links.length} links en total.`);
+    }
+  });
+};
+
 module.exports = {
-    mdLinks,
+  mdLinks,
 };
