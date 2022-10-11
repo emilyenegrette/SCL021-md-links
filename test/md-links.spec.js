@@ -8,8 +8,8 @@ const pathDiferent = './package.json';
 const pathRelative = './';
 const pathRelative2 = './test';
 const pathAbsolute = './README.md';
-const pathDePrueba0 = './testcito1.md';
-const pathDePrueba1 = './testcito2.md';
+const pathDePrueba0 = './testcit0.md';
+const pathDePrueba1 = './testcito1.md';
 const arrayLinks = [
   {
     file: './testcito1.md',
@@ -135,7 +135,7 @@ describe('La funcion mdLinks según la ruta y su 2do parametro devuelve la data/
   });
   test('Debería retornar el total de los links encontrados en el directorio.', async () => {
     const data = await mdLinks(pathRelative, '--stats');
-    expect(data).toStrictEqual('Existen 76 links en total.');
+    expect(data).toStrictEqual('Existen 80 links en total.');
   });
   test('Debería retornar los links con las propiedades href y file.', async () => {
     const data = await mdLinks(pathDePrueba1, undefined);
@@ -147,6 +147,6 @@ describe('La funcion mdLinks según la ruta y su 2do parametro devuelve la data/
   });
   test('Debería retornar el total de los links encontrados.', async () => {
     const data = await mdLinks(pathDePrueba1, '--stats');
-    expect(data).toStrictEqual('Existen 3 links en total.');
+    expect(data).toStrictEqual('Existen 4 links en total.');
   });
 });
