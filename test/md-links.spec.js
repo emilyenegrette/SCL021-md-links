@@ -89,8 +89,8 @@ describe('La función extractionFilesMD extrae los archivos .md de un directorio
   });
   it('Deberia retornar un array si el directorio tiene archivos.md', () => {
     let arrayFiles = extractionFilesMD(pathRelative);
-    expect(arrayFiles[0]).toEqual('testcito1.md');
-    expect(arrayFiles[1]).toEqual('testcito2.md');
+    expect(arrayFiles[0]).toEqual('testcit0.md');
+    expect(arrayFiles[1]).toEqual('testcito1.md');
     expect(arrayFiles[2]).toEqual('readme.md');
   });
   it('Debería retornar un array vacio si el directorio no tiene archivos.md', () => {
@@ -135,7 +135,7 @@ describe('La funcion mdLinks según la ruta y su 2do parametro devuelve la data/
   });
   test('Debería retornar el total de los links encontrados en el directorio.', async () => {
     const data = await mdLinks(pathRelative, '--stats');
-    expect(data).toStrictEqual('Existen 4 links en total.');
+    expect(data).toStrictEqual('Existen 76 links en total.');
   });
   test('Debería retornar los links con las propiedades href y file.', async () => {
     const data = await mdLinks(pathDePrueba1, undefined);
