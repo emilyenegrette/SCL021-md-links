@@ -1,6 +1,9 @@
 {
   "name": "emilyenegrette",
   "version": "0.1.0",
+  "bin": {
+    "mdlinks": "./cli.js"
+  },
   "engines": {
     "node": ">=16.x"
   },
