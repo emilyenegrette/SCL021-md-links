@@ -21,7 +21,7 @@ const fileExtensionMD = file => path.extname(file) === '.md';
 const readFile = file => fs.readFileSync(file, 'utf8');
 
 // expresión regular para hacer la comparación y extracción de links
-const regExp = /(https?:\/\/)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)/gi;
+const regExp = /(?:(?:https?|ftp|file):\/\/|www\.|ftp\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/igm;
 
 // función que lee directorio y retorna los archivos.md
 const extractionFilesMD = directory => {

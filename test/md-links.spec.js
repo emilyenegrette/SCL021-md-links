@@ -8,9 +8,14 @@ const pathDiferent = './package.json';
 const pathRelative = './';
 const pathRelative2 = './test';
 const pathAbsolute = './README.md';
-const pathDePrueba0 = './testcit0.md';
+const pathDePrueba0 = './testforlinks/testcit0.md';
 const pathDePrueba1 = './testcito1.md';
+
 const arrayLinks = [
+  {
+    file: './testcito1.md',
+    href: '(https://es.wikipedia.org/wiki/Markdown)'
+  },
   {
     file: './testcito1.md',
     href: '(https://es.wikipedia.org/wiki/Courage_the_Cowardly_Dog)'
@@ -19,12 +24,19 @@ const arrayLinks = [
   {
     file: './testcito1.md',
     href: '(http://community.laboratoria.la/t/modulos-librerias-paquetes-frameworks-cual-es-la-diferencia/175)'
-  }
+  },
+  
 ];
 const validateLinks = [
   {
     file: './testcito1.md',
     href: '(https://es.wikipedia.org/wiki/Courage_the_Cowardly_Dog)',
+    status: 404,
+    ok: 'ok'
+  },
+  {
+    file: './testcito1.md',
+    href: '(https://es.wikipedia.org/wiki/Markdown)',
     status: 404,
     ok: 'ok'
   },
@@ -89,9 +101,9 @@ describe('La función extractionFilesMD extrae los archivos .md de un directorio
   });
   it('Deberia retornar un array si el directorio tiene archivos.md', () => {
     let arrayFiles = extractionFilesMD(pathRelative);
-    expect(arrayFiles[0]).toEqual('testcit0.md');
-    expect(arrayFiles[1]).toEqual('testcito1.md');
-    expect(arrayFiles[2]).toEqual('readme.md');
+    // expect(arrayFiles[0]).toEqual('testcit0.md');
+    expect(arrayFiles[0]).toEqual('testcito1.md');
+    expect(arrayFiles[1]).toEqual('README.md');
   });
   it('Debería retornar un array vacio si el directorio no tiene archivos.md', () => {
     expect(extractionFilesMD(pathRelative2)).toEqual([]);
@@ -128,7 +140,7 @@ describe('La funcion mdLinks según la ruta y su 2do parametro devuelve la data/
     expect(typeof mdLinks).toBe('function');
   });
   test('Debería retornar "La ruta ingresada no es válida." si la ruta es inválida.', async () => {
-    await expect(mdLinks(pathErronea, undefined)).rejects.toMatch('La ruta ingresada no es válida.');
+    await expect(mdLinks(pathErronea, undefined)).rejects.toMatch('La ruta ingresada es inválida.');
   });
   test('Debería retornar "La ruta -nameFile- no corresponde a un archivo Markdown." si la ruta no es archivo.md.', async () => {
     await expect(mdLinks(pathDiferent, undefined)).rejects.toMatch('La ruta ./package.json no corresponde a un archivo Markdown.');
@@ -137,13 +149,13 @@ describe('La funcion mdLinks según la ruta y su 2do parametro devuelve la data/
     const data = await mdLinks(pathRelative, '--stats');
     expect(data).toStrictEqual('Existen 80 links en total.');
   });
-  test('Debería retornar los links con las propiedades href y file.', async () => {
-    const data = await mdLinks(pathDePrueba1, undefined);
-    expect(data).toStrictEqual(arrayLinks);
-  });
   test('Debería retornar los links con todas sus propiedades.', async () => {
     const data = await mdLinks(pathDePrueba1, '--validate');
     expect(data).toStrictEqual(validateLinks);
+  });
+  test('Debería retornar los links con las propiedades href y file.', async () => {
+    const data = await mdLinks(pathDePrueba1);
+    expect(data).toStrictEqual(arrayLinks);
   });
   test('Debería retornar el total de los links encontrados.', async () => {
     const data = await mdLinks(pathDePrueba1, '--stats');

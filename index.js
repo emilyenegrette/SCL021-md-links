@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 const { routeEx, isFolder, extractionFilesMD, fileExtensionMD, extractionLinks, dataLinks } = require('./data');
+const path = require('path');
 const color = require('colors');
 
 const mdLinks = (inputPath, options) => {
-  return new Promise(function (res, rej) {
-    if (!routeEx(inputPath)) {
-      rej('La ruta ingresada no es válida.')
+  return new Promise(function (res, rej) { 
+    const basePath = path.basename(inputPath);
+    console.log({basePath});
+    if (!routeEx(basePath)) { 
+      rej('La ruta ingresada es inválida.')
     }
     // Filtramos por directorio relativo o archivo absoluto
     let filesAbsolute;
