@@ -56,6 +56,14 @@ const extractionLinks = pathAbsolute => {
     return allLinks;
 };
 
+// intento de pasar ruta a absoluta
+const pathIsNotAbsolute = (dataFiles) => {
+if(pathAbsolute.isAbsolute(dataFiles) === false){
+    return path.resolve(dataLinks)
+} return dataLinks
+};
+// fin del intento, sobrevivimos (pero por poco)
+
 //Función para extraer informacion de los links
 const dataLinks = links => {
     const objs = links.map(e => {
@@ -87,4 +95,5 @@ module.exports = {
     extractionFilesMD,
     extractionLinks,
     dataLinks,
+    pathIsNotAbsolute
 };

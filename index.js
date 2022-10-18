@@ -6,12 +6,12 @@ const color = require('colors');
 const mdLinks = (inputPath, options) => {
   return new Promise(function (res, rej) { 
     const basePath = path.basename(inputPath);
-    console.log({basePath});
     if (!routeEx(basePath)) { 
       rej('La ruta ingresada es inválida.')
     }
     // Filtramos por directorio relativo o archivo absoluto
     let filesAbsolute;
+
     //si ruta es directorio
     if (isFolder(inputPath)) {
       console.log(color.bold('Tu ruta es un directorio.'));
@@ -24,6 +24,7 @@ const mdLinks = (inputPath, options) => {
         console.log(color.bold('Tu ruta es un archivo.md'));
         filesAbsolute = [inputPath];
       }
+
       //Si la ruta NO es archivo .md
       else {
         rej(`La ruta ${inputPath} no corresponde a un archivo Markdown.`);

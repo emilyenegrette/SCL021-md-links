@@ -3,8 +3,7 @@ const { mdLinks } = require('./index');
 const color = require('colors');
 const gradient = require('gradient-string');
 
-const [ , ,termPath, termValidate] = process.argv; console.log(process.argv);
-console.log({termPath, termValidate});
+const [ , ,termPath, termValidate] = process.argv;
 
 // Validación de parámetros por terminal
 if (termPath && termValidate == undefined) {
@@ -40,6 +39,7 @@ else {
 
 }
 
+// revisar referencia que paso Jackie para el process.argv jiji
 /* const {mdLinks, absoluteLink} = require("./index.js")
 const input = [process.argv[3], process.argv[4]]
 let options = "";
