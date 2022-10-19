@@ -16,19 +16,19 @@ Markdown Links es una librería creada con Node.Js y disponible en npm para inst
 
 Para desarrollar este proyecto se utilizó este diagrama de flujo: 
 
-[](diagrama-de-flujo.png)
+[](assets/diagrama-de-flujo.png)
 
 ## 3. Instalación
 
 Para instalar la librería:
 
-[](npm-published.png)
-[](npm-install.png)
+[](assets/npm-published.png)
+[](assets/npm-install.png)
 
 ## 4. Ejemplos
 
-[](example1.png)
-[](example2.png)
-[](example3.png)
-[](example4.png)
-[](example5.png)
+[](assets/example1.png)
+[](assets/example2.png)
+[](assets/example3.png)
+[](assets/example4.png)
+[](assets/example5.png)
